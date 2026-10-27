@@ -32,7 +32,7 @@ BAR = 2.0            # scale bar length, a0
 N = 700              # grid points per axis
 FRAMES = 48          # frames per oscillation period
 FRAME_MS = 50        # milliseconds per frame
-GAMMAS = [0.5, 0.5, 0.35]          # display gamma of PowerNorm
+GAMMAS = [0.6, 0.5, 0.35]          # display gamma of PowerNorm
 GAMMA_NORM = 0.3     # exponent for adjusting vmaxes (same recipe and value as the other scripts)
 MARKER_COLOR = "#4DD0E1"
 
