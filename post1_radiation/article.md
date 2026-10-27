@@ -65,7 +65,7 @@ The phase factor drops out when we take the square, so the electron cloud does n
 
 Note the peculiar way quantum mechanics resolves this. A classical particle can only produce a steady distribution by moving around, like a fly buzzing about a room. The quantum cloud is steady without any such path. In the standard interpretation, there is no orbit to speak of, and that absence is the point.
 
-> **For the isolated atom, the classical collapse is gone.**
+> **For the isolated atom, the classical instability is gone.**
 
 Figure 2 shows the four states we will use in the rest of the post, cut through the nucleus and drawn on the same spatial scale: 1s, 2s, 2p and 3p. The letters describe the shape. The s states are spherical, the p states have two lobes, one on each side of a plane through the nucleus. The dark rings and lines are nodes, places where the wavefunction passes through zero and the electron is never found: a ring in 2s and 3p, and the plane *z* = 0 in 2p and 3p.
 
