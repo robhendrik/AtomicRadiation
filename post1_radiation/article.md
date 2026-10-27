@@ -20,7 +20,9 @@ An atom is a very small antenna, so it is fair to ask whether it behaves like on
 
 The quantity that matters is the dipole moment: charge times displacement. For an electron at position **x** from the nucleus it is **p** = −e**x**. If the electron swings back and forth, *p*(*t*) = *p*₀ cos(ω*t*), where *p*₀ is the amplitude, the charge times how far it swings. The average power radiated by such an oscillating dipole [1] is
 
-$$P = \frac{\mu_0\,\omega^4\,p_0^2}{12\pi c}.$$
+$$
+P = \frac{\mu_0\,\omega^4\,p_0^2}{12\pi c}
+$$
 
 The power grows with the square of the amplitude *p*₀, and with the fourth power of the frequency. Doubling the frequency at the same amplitude gives sixteen times the power. The same ω⁴ is the main reason the sky is blue, since air molecules are driven by sunlight and re-radiate as small dipoles. (Rayleigh scattering also depends on how strongly the molecules polarize, but the fourth power of the frequency dominates.)
 
@@ -39,7 +41,7 @@ The antenna picture is legitimate here. The dipole formula needs the source to b
 
 From the energy balance we can conclude that the atom is unstable, but what is the force acting on the electron to slow it down? In the classical model the electron's own radiation field acts back on it, a recoil that opposes its motion and drains its energy. This is the Abraham–Lorentz radiation reaction force [2].
 
-> **classical physics says atoms are unstable. Yet they exist.**
+> **Classical physics says atoms are unstable. Yet they exist.**
 
 ## Quantum Mechanics to the Rescue
 
@@ -49,7 +51,10 @@ The wavefunctions that matter most are the energy eigenstates. Hydrogen has a di
 
 What makes these states special is how they change in time. An eigenstate evolves only by a phase:
 
-$$\Psi_n(\mathbf r,t) = \psi_n(\mathbf r)\,e^{-iE_nt/\hbar}, \qquad |\Psi_n(\mathbf r,t)|^2 = |\psi_n(\mathbf r)|^2.$$
+$$
+\Psi_n(\mathbf r,t) = \psi_n(\mathbf r)\,e^{-iE_nt/\hbar} \\
+ |\Psi_n(\mathbf r,t)|^2 = |\psi_n(\mathbf r)|^2
+ $$
 
 The phase factor drops out when we take the square, so the electron cloud does not change in time, and neither does the mean electric dipole. The classical argument for the collapse was based on a dipole that oscillates, because only an oscillating dipole radiates. A stationary state has none, so the radiation formula of the previous section gives zero. The 'quantum' cloud does not orbit the nucleus the way a planet does and there is no oscillating dipole. (Some stationary states do carry a probability current, such as 2p with the electron circulating around the axis, but even then the density and the mean dipole stay constant.)
 
@@ -68,7 +73,9 @@ Figure 2 shows the four states we will use in the rest of the post, cut through 
 
 A stationary cloud has no oscillating dipole, so the antenna picture predicts no radiation from it, but nothing forces an atom to sit in a single stationary state. Quantum mechanics allows superpositions, and a superposition of two eigenstates, a lower state 1 and an upper state 2 with amplitudes *c*₁ and *c*₂, evolves as
 
-$$|\Psi(t)\rangle = c_1\,e^{-iE_1t/\hbar}|1\rangle + c_2\,e^{-iE_2t/\hbar}|2\rangle.$$
+$$
+|\Psi(t)\rangle = c_1\,e^{-iE_1t/\hbar}|1\rangle + c_2\,e^{-iE_2t/\hbar}|2\rangle
+$$
 
 (The labels 1 and 2 stand for the lower and upper state, which are 1s and 2p in Figure 3 and 1s and 3p in Figure 4.) Each part keeps its own phase, and the two phases advance at different speeds. Their difference, φ = (*E*₂ − *E*₁)*t*/ħ, grows steadily in time, so the two clouds fall in and out of step at the angular frequency ω = (*E*₂ − *E*₁)/ħ. For real orbitals and equal weights, the density becomes |Ψ|² = ½(ψ₁² + ψ₂²) + ψ₁ψ₂ cos φ. The first part is static. Only the cross term ψ₁ψ₂ cos φ moves, and it carries probability from one side of the nucleus to the other and back again. That sloshing is what the two snapshots at the top of this post show, half a period apart.
 
@@ -78,7 +85,9 @@ The number ⟨1|*z*|2⟩ is a matrix element: multiply the two wavefunctions by 
 
 The classical antenna prediction can be written in terms of a decay rate Γ. The mean power radiated by the oscillating dipole is ħωΓ|*c*₁|²|*c*₂|², where
 
-$$\Gamma = \frac{\omega^3\, d_{12}^2}{3\pi\varepsilon_0\hbar c^3}.$$
+$$
+\Gamma = \frac{\omega^3\, d_{12}^2}{3\pi\varepsilon_0\hbar c^3}
+$$
 
 The rate grows as ω³ and as the square of the transition dipole. This is the ω⁴ of the first section divided by one power of ω, because each photon carries ħω. For a weakly excited atom, with |*c*₁| close to 1, the energy stored in the excitation is radiated away at exactly this rate Γ.
 
