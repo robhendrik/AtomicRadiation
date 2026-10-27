@@ -7,7 +7,9 @@ Both panels use the same radial scale and the same color range.
 """
 import numpy as np
 import pyvista as pv
-
+import os
+os.chdir(os.path.dirname(__file__))
+print(f"Current working directory: {os.getcwd()}")
 OFF_SCREEN = True          # set False for an interactive window
 OUTFILE = "dipole_patterns_3d.png"
 
@@ -46,7 +48,7 @@ def add_axis(label):
     pl.add_mesh(pv.Line((0, 0, -AXIS_LEN), (0, 0, AXIS_LEN)), color="gray", line_width=2)
     pl.add_point_labels(
         [(0, 0, AXIS_LEN + 0.25)], [label],
-        font_size=18, shape=None, show_points=False, text_color="black",
+        font_size=28, shape=None, show_points=False, text_color="black",
     )
 
 
@@ -60,7 +62,7 @@ pl.add_mesh(pv.Arrow(start=(0, 0, -0.7), direction=(0, 0, 1), scale=1.4,
 pl.add_mesh(pv.Arrow(start=(0, 0, 0.7), direction=(0, 0, -1), scale=1.4,
                      tip_length=0.25, tip_radius=0.09, shaft_radius=0.035), color=RED)
 pl.add_mesh(pv.Sphere(radius=0.11, center=(0, 0, 0.35)), color="black")
-pl.add_text("Linear dipole", position="lower_edge", font_size=16, color="black")
+pl.add_text("Oscillating electron", position="lower_edge", font_size=16, color="black")
 pl.camera_position = cam
 
 # ---- Right panel: circulating electron -----------------------------------

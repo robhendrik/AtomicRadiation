@@ -12,12 +12,14 @@ import matplotlib
 matplotlib.use("Agg")
 import matplotlib.pyplot as plt
 from matplotlib.colors import PowerNorm
-
+import os
+os.chdir(os.path.dirname(__file__))
+print(f"Current working directory: {os.getcwd()}")
 OUTFILE = "hydrogen_static_clouds.png"
 HALF = 24.0        # half-width of the window, in Bohr radii (same for all panels)
 N = 1200           # grid points per axis
-GAMMA = 0.3        # <1 brightens faint regions; same for all panels
-
+GAMMA = 0.6        # <1 brightens faint regions; same for all panels
+GAMMA_NORM = 0.3   # exponent for adjusting vmaxes to enhance visibility of diffuse clouds
 
 # Hydrogen radial functions R_nl(r), atomic units (a0 = 1), normalized so that
 # integral R^2 r^2 dr = 1
@@ -59,13 +61,15 @@ if __name__ == "__main__":
     check_normalization()
 
     dens = [density_slice(psi) for _, psi in STATES]
-    vmax = max(d.max() for d in dens)           # one common scale (1s peak, 1/pi)
-    norm = PowerNorm(gamma=GAMMA, vmin=0, vmax=vmax)
+    vmax = [d.max() for d in dens]     
+
+    vmaxes = [v * (v / max(vmax)) ** (-GAMMA_NORM) for v in vmax]
+    norm = [PowerNorm(gamma=GAMMA, vmin=0, vmax=v) for v in vmaxes]
 
     fig, axes = plt.subplots(1, 4, figsize=(16, 4.6), facecolor="white")
-    for ax, (name, _), d in zip(axes, STATES, dens):
+    for ax, (name, _), d, n in zip(axes, STATES, dens, norm):
         ax.imshow(d, origin="lower", extent=[-HALF, HALF, -HALF, HALF],
-                  cmap="magma", norm=norm, interpolation="bilinear")
+                  cmap="magma", norm=n, interpolation="bilinear")
         ax.set_title(name, fontsize=18, pad=8)
         ax.set_xticks([])
         ax.set_yticks([])
