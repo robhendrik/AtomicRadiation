@@ -1,11 +1,14 @@
-"""50%-of-max density isosurface of 1s+2p (phi=0) with a metallic finish and side lighting.
-Usage: xvfb-run -a python metal_surface.py"""
+"""Surface enclosing 50% of the probability of the 1s+2p superposition at phi = 0 (left, above the plane z = 0)
+and phi = pi (right, mirror image below it), metallic finish, side lighting, small marker at each nucleus.
+Usage: xvfb-run -a python metal_pair.py"""
 import numpy as np, pyvista as pv, os
 from PIL import Image
 os.chdir(os.path.dirname(os.path.abspath(__file__)))
+print(f"Current working directory: {os.getcwd()}")
 HALF, N, W, H = 7.0, 220, 1200, 630
 LEVEL, BG = 0.5, "#04040c"
 PLANE_OPACITY = 0.7
+NUC_PX, NUC_COLOR = 6, (255, 90, 54)   # nucleus marker: radius in pixels and colour (drawn on top, so it shows through the surface)
 def R10(r): return 2*np.exp(-r)
 def R21(r): return r*np.exp(-r/2)/(2*np.sqrt(6))
 ax = np.linspace(-HALF, HALF, N)
@@ -55,5 +58,21 @@ for m in (up, dn):
 pl.add_light(pv.Light(position=(-14, -4, 3), focal_point=(0, 0, 0), color="#ffd9a8", intensity=1.2))
 pl.add_light(pv.Light(position=(12, 6, 1), focal_point=(0, 0, 0), color="#9cc0ff", intensity=0.8))
 pl.camera_position = [(1.0, -19.0, 5.5), (0, 0, 0.0), (0, 0, 1)]; pl.camera.zoom(1.05)
+
+# nucleus markers: the nucleus sits at the centre of each blob, on the plane z = 0, hidden inside the opaque
+# surface. Project its position to the screen and draw a small dot on top of the finished image.
+import vtk
+from PIL import ImageDraw
+pl.render()
+nuclei_px = []
+for nx in (-SEP, SEP):
+    crd = vtk.vtkCoordinate(); crd.SetCoordinateSystemToWorld(); crd.SetValue(nx, 0.0, 0.0)
+    dx_, dy_ = crd.GetComputedDoubleDisplayValue(pl.renderer)
+    nuclei_px.append((dx_, H - dy_))                       # display y runs from the bottom
 img = pl.screenshot(None, return_img=True, scale=2); pl.close()
-Image.fromarray(img).resize((W, H), Image.LANCZOS).save("superposition_3d_metal_pair_1s_2p.png"); print("saved")
+out = Image.fromarray(img).resize((W, H), Image.LANCZOS)
+dr = ImageDraw.Draw(out)
+# for px, py in nuclei_px:
+#     dr.ellipse([px - NUC_PX - 1.5, py - NUC_PX - 1.5, px + NUC_PX + 1.5, py + NUC_PX + 1.5], fill=(255, 255, 255))
+#     dr.ellipse([px - NUC_PX, py - NUC_PX, px + NUC_PX, py + NUC_PX], fill=NUC_COLOR)
+out.save("superposition_3d_metal_pair_1s_2p.png"); print("saved", nuclei_px)

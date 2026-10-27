@@ -11,7 +11,8 @@ where peak_i is the largest density that state reaches during the oscillation.
 GAMMA_NORM = 0 -> every GIF on its own scale, larger -> closer to one common scale.
 
 Below each cloud: the dipole curve d_z(phi) = -e <z>, same vertical range in every GIF, with a
-marker that follows the phase.
+marker that follows the phase. The phase phi is printed in the top-left corner of every frame
+(exactly "0", "pi/2", "pi", "3pi/2" on the four key frames used in the montage).
 
 Usage: python superposition_gif.py
 """
@@ -45,6 +46,12 @@ def Y10(c): return np.sqrt(3 / (4 * np.pi)) * c
 
 ORB = {"1s": lambda r, c: R10(r) * Y00, "2s": lambda r, c: R20(r) * Y00,
        "2p": lambda r, c: R21(r) * Y10(c), "3p": lambda r, c: R31(r) * Y10(c)}
+
+
+def phase_label(k):
+    """Label for frame k: exact text on the four key frames, decimals (in units of pi) otherwise."""
+    exact = {0: "φ = 0", FRAMES // 4: "φ = π/2", FRAMES // 2: "φ = π", 3 * FRAMES // 4: "φ = 3π/2"}
+    return exact.get(k, f"φ = {2 * k / FRAMES:.2f}π")
 
 
 def transition_z(excited):
@@ -95,6 +102,9 @@ def make_gif(excited):
     ax.text(-HALF + 0.6 + BAR / 2, -HALF + 1.0, rf"{BAR:g} $a_0$", color="white",
             ha="center", va="bottom", fontsize=11)
 
+    phase_txt = ax.text(-HALF + 0.4, HALF - 0.4, phase_label(0), color="white", ha="left", va="top",
+                        fontsize=16)
+
     # dipole curve with moving marker (same y-range for every state: 0.8 e a0)
     strip = fig.add_axes([0.16, 0.025, 0.72, 0.085])
     ph = np.linspace(0, 2 * np.pi, 400)
@@ -112,6 +122,7 @@ def make_gif(excited):
         phi = 2 * np.pi * k / FRAMES
         im.set_data(A + I * np.cos(phi))
         dot.set_data([phi], [-z_te * np.cos(phi)])
+        phase_txt.set_text(phase_label(k))
         fig.canvas.draw()
         frames.append(Image.fromarray(np.asarray(fig.canvas.buffer_rgba())[..., :3].copy()))
     plt.close(fig)
