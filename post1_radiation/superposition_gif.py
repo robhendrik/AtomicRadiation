@@ -32,7 +32,7 @@ BAR = 2.0            # scale bar length, a0
 N = 700              # grid points per axis
 FRAMES = 48          # frames per oscillation period
 FRAME_MS = 50        # milliseconds per frame
-GAMMA = 0.6          # display gamma of PowerNorm
+GAMMAS = [0.5, 0.5, 0.35]          # display gamma of PowerNorm
 GAMMA_NORM = 0.3     # exponent for adjusting vmaxes (same recipe and value as the other scripts)
 MARKER_COLOR = "#4DD0E1"
 
@@ -86,7 +86,7 @@ def make_gif(excited):
     A, I, peak = prepared[excited]
     vmax = vmaxes[excited]
     z_te = transition_z(excited)
-    norm = PowerNorm(GAMMA, vmin=0, vmax=vmax)
+    norm = PowerNorm(GAMMAS[STATES.index(excited)], vmin=0, vmax=vmax)
 
     FIG_W, FIG_H = 6.0, 7.2
     fig = plt.figure(figsize=(FIG_W, FIG_H), dpi=80, facecolor="white")
