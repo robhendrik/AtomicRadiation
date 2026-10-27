@@ -18,7 +18,7 @@ print(f"Current working directory: {os.getcwd()}")
 OUTFILE = "hydrogen_static_clouds.png"
 HALF = 24.0        # half-width of the window, in Bohr radii (same for all panels)
 N = 1200           # grid points per axis
-GAMMA = 0.5        # <1 brightens faint regions; same for all panels
+GAMMA = 0.4        # <1 brightens faint regions; same for all panels
 GAMMA_NORM = 0.3   # exponent for adjusting vmaxes to enhance visibility of diffuse clouds
 
 # Hydrogen radial functions R_nl(r), atomic units (a0 = 1), normalized so that
