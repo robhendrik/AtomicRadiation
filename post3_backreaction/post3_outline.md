@@ -22,3 +22,24 @@ To approach thsi discussion we start with a short intermezzo on correlations, an
 The interaction between atom and field is given by Ed.. We need both a field and a dipole. A naive assumption could be that in QM bith te atom anf field randomly fluctuate. We can write as the averag interaction <Ed> = <E><d> = 0. Bot quantities fluctuate, but since they are not correleate they are eually likely to appear with a positive as with a negative sign (or, due to fluctuation the atim is a slikely to absirb, or to emit some energy). 
 
 To have an effect ot the atoms evolution we need <Ed> to be larged (absorption) of smaller (emission) that zero. Random fluctuations do not do this, but we need to look one step close at causes and effects.. Imagine a small field fluctuation at time t0. It can cause a small disturbance in teh atom at t0. Given tha the atom will not relac back to its undisturbed state immediately we can expect a small disturbance at the atom also a small time later.. We describe thi with teh suseptibility.. DELTAd(t) = CHI_A(t,t0) DELTA E(t0).. But also the field has a limited speed in which it can adjust.. If you know the field has a small positive disturbance at t0, the field state at time t is not fully random anymoe DELTA E(t) = C_E(t,t0) DELTA E(t0)..So the atom-field interaction at time t can be impacted by the correlation between atom and field repsonse, after a field disturbance at time t0 DELTA <dE>(t) = C_E(t,t0) CHI_A(t,t0) DELTA E(t0) 
+
+Now image there is random disruption at the atoms side, is can impact the filed at later time. And is correlated with the atom’s at later time. So, starting from random fluctuation by the  atom we get 
+DELTA <dE>(t) = C_A(t,t0) CHI_F(t,t0) DELTA A(t0) 
+
+We Can describe the interaction by starting fromtbe field flucs, or from the atoms fluctuation. If we go back to the original interaction Hamiltonian de, we can classically also write Ed. The order does not matter. If we take a moment whether atom and field did not interact also in QM the order does not matt [E,d]=0.. but if we perform the calculation sketched above,we find thatcstarting from … lead to vacuum flucs asctrigger and from leads to atomic fluctuations as trigger. Thevreason is that if we split the field the two components do not commute with the atom. 
+So, what is the ‘right’ order? This has been a long debate, onthe 80’s CCD proposed a symmetrized version since …. This leads to vacuum and atom contribution equally to spontaneous emission
+
+DDT H = … + …
+
+Forvthe groundcstate this argument leads to
+
+Dither = … - …
+
+So, this also explains why we donot see spontaneous absorption…. If the atom is in de ground state vacuum could trigger a transition to the excited state, but the 
+Effect from the atom initiated term has an oppositecterm andcancels, where iscreinforces for the excited state.
+
+In the simplified JC Hamiltonian we do not see spont absorption… thisvis becauseveaynon, when deriving the interaction, we removed terms … that transfer the |g,0> to |e,1>. The derivation taking into account operator ordering provides a deeper insight
+
+## Does it matter
+… same size, iscthere experiment…
+… accelerated atom…
