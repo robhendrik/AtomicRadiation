@@ -19,7 +19,7 @@ It also sets a trap. An atom prepared in a single excited state has a perfectly 
 
 ## The Atom That Shouldn't Exist
 
-In a radio antenna the transmitter pushes electrons back and forth along a wire, and the wire radiates. A receiving antenna is the same wire run in reverse. The incoming wave shakes the electrons, and we read the signal from their motion. Either way, the physics is charge sloshing along a line.
+In a radio antenna the transmitter pushes electrons back and forth along a wire, and the wire radiates. In a receiving antenna the incoming wave shakes the electrons, and we read the signal from their motion. Either way, the physics is charge sloshing along a line.
 
 An atom is a very small antenna, so it is fair to ask whether it behaves like one.
 
@@ -38,11 +38,11 @@ The radiation is not sent equally in all directions. A charge oscillating along 
 > Alt text: Two 3D radiation patterns around a vertical axis. Left, labelled "Oscillating electron" with the axis labelled "Dipole axis": a flat, light-green doughnut with a small electron and arrow on the axis, pinched to zero along the axis. Right, labelled "Circulating electron" with the axis labelled "Rotation axis": a much larger blue peanut-shaped surface, elongated along the axis with a narrow waist, enclosing a small circular orbit with an electron.
 > Source: Image by author.
 
-To see how big this effect is, take the simplest picture of hydrogen: an electron on a circular orbit, held there by the Coulomb attraction to the nucleus. The attraction should be equal to the force needed to keep the electron on its circle. Classical physics does not say how large the orbit should be, so we take the observed size of hydrogen, *a*₀ = 0.053 nm, as its radius. That gives a binding energy of 13.6 eV, a speed of 2.2×10⁶ m/s (about one percent of the speed of light) and an orbital frequency ω = v/*a*₀ ≈ 4.1×10¹⁶ rad/s, one orbit every 152 attoseconds.
+To see how big this effect is, take the simplest picture of hydrogen: an electron on a circular orbit, held there by the Coulomb attraction to the nucleus. The attraction should be equal to the force needed to keep the electron on its circle. We take the observed size of hydrogen, *a*₀ = 0.053 nm, as the orbit radius. This gives a binding energy of 13.6 eV and one orbit every 152 attoseconds.
 
-The dipole amplitude is the charge times the orbit radius, *p*₀ = *e* *a*₀ ≈ 8.5×10⁻³⁰ C·m. For a circular orbit the radiated power is twice the value the formula above gives for a linear dipole (the factor 12π becomes 6π), which comes to about 4.7×10⁻⁸ W. That is a tiny number in watts, but enormous compared to the binding energy: dividing energy by power gives a lifetime of about 47 picoseconds.
+A circulating charge radiates twice the power of a linear dipole with the same amplitude. If we use the dipole formula, we see that this drains the 13.6 eV binding energy in about 47 picoseconds.
 
-The antenna picture is legitimate here. The dipole formula needs the source to be much smaller than the wavelength, and it is: the orbit is about 0.1 nm across, the emitted wavelength is about 46 nm. The calculation does not take into account that the electron spirals inward when it loses energy. Taking this into account gives a time exactly three times shorter, about 16 picoseconds: a classical atom would last picoseconds.
+The antenna picture is legitimate here, since the dipole formula needs the source to be much smaller than the wavelength: the orbit is about 0.1 nm across, the emitted wavelength about 46 nm. Allowing for the electron spiralling inward shortens the lifetime by a factor three, to about 16 picoseconds.
 
 From the energy balance we can conclude that the atom is unstable, but what is the force acting on the electron to slow it down? In the classical model the electron's own radiation field acts back on it, a recoil that opposes its motion and drains its energy. This is the Abraham–Lorentz radiation reaction force [2].
 
@@ -57,13 +57,13 @@ The wavefunctions that matter most are the energy eigenstates. Hydrogen has a di
 What makes these states special is how they change in time. An eigenstate evolves only by a phase:
 
 $$
-\Psi_n(\mathbf r,t) = \psi_n(\mathbf r)\,e^{-iE_nt/\hbar} \\
- |\Psi_n(\mathbf r,t)|^2 = |\psi_n(\mathbf r)|^2
+\Psi_n(\mathbf r,t) = \psi_n(\mathbf r)\,e^{-iE_nt/\hbar} \\[0.4cm]
+|\Psi_n(\mathbf r,t)|^2 = |\psi_n(\mathbf r)|^2
  $$
 
-The phase factor drops out when we take the square, so the electron cloud does not change in time, and neither does the mean electric dipole. The classical argument for the collapse was based on a dipole that oscillates, because only an oscillating dipole radiates. A stationary state has none, so the radiation formula of the previous section gives zero. The 'quantum' cloud does not orbit the nucleus the way a planet does and there is no oscillating dipole. (Some stationary states do carry a probability current, such as 2p with the electron circulating around the axis, but even then the density and the mean dipole stay constant.)
+The phase factor drops out when we take the square, so the electron cloud does not change in time, and neither does the mean electric dipole. The classical argument for the collapse was based on a dipole that oscillates, because only an oscillating dipole radiates. A stationary state has none, so the radiation formula of the previous section gives zero. The 'quantum' cloud does not orbit the nucleus the way a planet does and there is no oscillating dipole.
 
-Note the peculiar way quantum mechanics resolves this. A classical particle can only produce a steady distribution by moving around, like a fly buzzing about a room. The quantum cloud is steady without any such path. In the standard interpretation, there is no orbit to speak of, and that absence is the point.
+Note the peculiar way quantum mechanics resolves this. A classical particle can only produce a steady distribution by moving around, like a fly buzzing about a room. The quantum cloud is steady without any such path. 
 
 > **For the isolated atom, the classical instability is gone.**
 
@@ -82,13 +82,13 @@ $$
 |\Psi(t)\rangle = c_1\,e^{-iE_1t/\hbar}|1\rangle + c_2\,e^{-iE_2t/\hbar}|2\rangle
 $$
 
-(The labels 1 and 2 stand for the lower and upper state, which are 1s and 2p in Figure 3 and 1s and 3p in Figure 4.) Each part keeps its own phase, and the two phases advance at different speeds. Their difference, φ = (*E*₂ − *E*₁)*t*/ħ, grows steadily in time, so the two clouds fall in and out of step at the angular frequency ω = (*E*₂ − *E*₁)/ħ. For real orbitals and equal weights, the density becomes |Ψ|² = ½(ψ₁² + ψ₂²) + ψ₁ψ₂ cos φ. The first part is static. Only the cross term ψ₁ψ₂ cos φ moves, and it carries probability from one side of the nucleus to the other and back again. That sloshing is what the two snapshots at the top of this post show, half a period apart.
+(The labels 1 and 2 stand for the lower and upper state, which are 1s and 2p in Figure 3 and 1s and 3p in Figure 4.) 
 
-Sloshing charge is an oscillating dipole. For the cloud above, the mean dipole moment along the *z* axis is ⟨*d*⟩ = 2 *c*₁ *c*₂ *d*₁₂ cos φ, where *d*₁₂ = −*e*⟨1|*z*|2⟩ is the transition dipole. So the amplitude of the oscillating dipole is *p*₀ = 2|*c*₁||*c*₂||*d*₁₂|, and the quantum atom has become the antenna of the first section, with one important difference. The frequency and the strength follow from the energies and the shapes of the two orbitals.
+The phase difference between the terms, φ(*t*) = (*E*₂ − *E*₁)*t*/ħ, grows steadily in time, so the two clouds fall in and out of step at the angular frequency ω = (*E*₂ − *E*₁)/ħ. For real orbitals and equal weights, the density becomes |Ψ|² = ½(ψ₁² + ψ₂²) + ψ₁ψ₂ cos(φ(*t*)). The first part is static. Only the cross term ψ₁ψ₂ cos(φ(*t*)) moves, and it carries probability from one side of the nucleus to the other and back again. 
 
-The number ⟨1|*z*|2⟩ is a matrix element: multiply the two wavefunctions by *z* and add up over all space. Only the shapes and signs of the orbitals matter. If the product ψ₁ψ₂ is the same on both sides of the nucleus, the factor *z* changes sign between the sides and the two halves cancel, as for 1s and 2s. If the product changes sign together with *z*, the halves add, as for 1s and 2p.
+Sloshing charge is an oscillating dipole. For the cloud above, the mean dipole moment along the *z* axis is ⟨*d*⟩ = 2 *c*₁ *c*₂ *d*₁₂ cos φ, where *d*₁₂ = −*e*⟨1|*z*|2⟩ is the transition dipole. The number ⟨1|*z*|2⟩ is a matrix element: multiply the two wavefunctions by *z* and add up over all space. Only the shapes and signs of the orbitals matter. 
 
-The classical antenna prediction can be written in terms of a decay rate Γ. The mean power radiated by the oscillating dipole is ħωΓ|*c*₁|²|*c*₂|², where
+So the amplitude of the oscillating dipole is *p*₀ = 2|*c*₁||*c*₂||*d*₁₂|, and the quantum atom has become the antenna of the first section, with one important difference. The frequency and the strength follow from the energies and the shapes of the two orbitals. The classical antenna prediction can be written in terms of a decay rate Γ. The mean power radiated by the oscillating dipole is ħωΓ|*c*₁|²|*c*₂|², where
 
 $$
 \Gamma = \frac{\omega^3\, d_{12}^2}{3\pi\varepsilon_0\hbar c^3}
@@ -96,7 +96,7 @@ $$
 
 The rate grows as ω³ and as the square of the transition dipole. This is the ω⁴ of the first section divided by one power of ω, because each photon carries ħω. For a weakly excited atom, with |*c*₁| close to 1, the energy stored in the excitation is radiated away at exactly this rate Γ.
 
-Figure 3 shows an equal superposition of 1s and 2p at four moments of one period. At φ = 0 the cloud is pushed up along the z axis, at φ = π it is pushed down, and in between it is centred. The curve under each panel is not the cloud but the dipole moment, with a marker for the phase of the panel above. Because the electron is negative, the dipole points opposite to the displacement of the cloud, so at φ = 0, with the cloud shifted up, the marker sits at its minimum.
+Figure 3 shows an equal superposition of 1s and 2p at four moments of one period. At φ = 0 the cloud is pushed up along the z axis, at φ = π it is pushed down, and in between it is centred. The curve under each panel is the dipole moment, with a marker for the phase of the panel above. Because the electron is negative, the dipole points opposite to the displacement of the cloud, so at φ = 0, with the cloud shifted up, the marker sits at its minimum.
 
 ![Figure 3](superposition_1s_2p_montage.png)
 > Caption: **Figure 3. A strong oscillating dipole. Coherent equal superposition of hydrogen 1s and 2p at four moments of one period (φ = 0, π/2, π, 3π/2). The cloud sloshes along the z axis, up at φ = 0 and down at φ = π relative to the dotted line z = 0. The curve below each panel is the electric dipole moment, which oscillates with amplitude 0.745 e a₀.**
@@ -124,7 +124,7 @@ The second case is 1s with 3p, in Figure 4. The 3p cloud is larger and has a rad
 
 The formula tells us what to expect. The higher frequency, 1.84×10¹⁶ rad/s, raises the rate by a factor 1.7, but the weaker dipole lowers it by a factor 6, so 3p decays to 1s at a little over a quarter of the 2p rate (Γ = 1.7×10⁸ s⁻¹). Here the real atom adds one complication: 3p also decays to 2s, at about 2.2×10⁷ s⁻¹ [5]. Its total lifetime is then 5.3 ns, and the 1s–3p line is about 30 MHz wide, roughly three times narrower than Lyman-α, mostly because of the weak dipole in Figure 4.
 
-The third case is the one that keeps us honest. A changing density is not enough to radiate. In 1s with 2s the cloud changes strongly in time, but it does so symmetrically (Figure 5).
+The third case shows that a changing density is not enough to radiate. In 1s with 2s the cloud changes strongly in time, but it does so symmetrically (Figure 5).
 
 ![Figure 5](superposition_1s_2s_montage.png)
 > Caption: **Figure 5. An oscillating cloud without a dipole. The cloud breathes: at φ = 0 it is compact and bright, surrounded by a dark ring, and at φ = π the core dims and probability spreads outward into a wide halo. It stays spherically symmetric throughout, so its centre of charge never moves and the dipole is exactly zero. Same window and dipole scale as Figure 3. The frame shows ±6 a₀, and a large part of the 2s halo lies beyond it.**
