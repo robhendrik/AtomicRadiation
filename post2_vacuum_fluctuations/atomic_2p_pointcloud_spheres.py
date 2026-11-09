@@ -73,16 +73,26 @@ def main():
                     help="Add an artistic virtual reflection and mirror plane")
     ap.add_argument("--mirror-x", type=float, default=14.0,
                     help="Mirror plane x position, in Bohr radii")
-    ap.add_argument("--reflection-brightness", type=float, default=0.48,
+    ap.add_argument("--reflection-brightness", type=float, default=0.75,
                     help="Reflection brightness multiplier, 0 to 1")
     ap.add_argument("--mirror-opacity", type=float, default=0.05,
                     help="Translucency of mirror plane (0 to 1)")
     ap.add_argument("--finish", choices=["matte", "satin", "metallic", "glossy"],
-                    default="metallic", help="Sphere material preset")
+                    default="glossy", help="Sphere material preset")
+    ap.add_argument("--palette", choices=["amber-cyan", "sunlight-cyan", "magenta-azure", "coral-violet", "original"],
+                    default="amber-cyan", help="Colours representing opposite orbital phases")
+    ap.add_argument("--image-dipole-phase", action=argparse.BooleanOptionalAction, default=True,
+                    help="Swap phase colours behind the mirror to illustrate the reversed parallel image dipole")
     ap.add_argument("--specular", type=float, default=None,
                     help="Override material specular strength, 0 to 1")
     ap.add_argument("--roughness", type=float, default=None,
                     help="PBR roughness override, 0 to 1")
+    ap.add_argument("--glow", action=argparse.BooleanOptionalAction, default=True,
+                    help="Add soft bloom around luminous spheres in saved PNG")
+    ap.add_argument("--glow-strength", type=float, default=0.42,
+                    help="Bloom intensity, 0 to 1 (default 0.42)")
+    ap.add_argument("--glow-radius", type=float, default=11.0,
+                    help="Bloom blur radius in pixels (default 11)")
     ap.add_argument("--save", action="store_true", default=True,
                     help="Save the output to a file instead of showing it interactively")
     ap.add_argument("--output", default="atomic_2p_dense_spheres.png")
@@ -94,6 +104,8 @@ def main():
         ap.error("--roughness must be between 0 and 1")
     if args.specular is not None and not 0 <= args.specular <= 1:
         ap.error("--specular must be between 0 and 1")
+    if not 0 <= args.glow_strength <= 1 or args.glow_radius < 0:
+        ap.error("--glow-strength must be 0..1 and --glow-radius >= 0")
     if args.points < 1 or args.radius <= 0 or args.size_cv < 0:
         ap.error("--points > 0, --radius > 0, --size-cv >= 0 required")
     rng = np.random.default_rng(args.seed)
@@ -109,12 +121,14 @@ def main():
                           color="white", intensity=2.2))
     pl.add_light(pv.Light(position=(-18,12,5), focal_point=(0,0,0),
                           color="#6688ff", intensity=0.45))
+    pl.add_light(pv.Light(position=(-7,-24,10), focal_point=(0,0,0),
+                          color="white", intensity=1.0))
     # PBR sphere materials, with optional manual specular override.
     presets = {
         "matte": (0.0, 0.90, 0.10),
         "satin": (0.15, 0.55, 0.30),
         "metallic": (0.80, 0.28, 0.70),
-        "glossy": (0.15, 0.12, 0.95),
+        "glossy": (0.22, 0.13, 0.95),
     }
     metallic, roughness, specular = presets[args.finish]
     if args.roughness is not None:
@@ -123,9 +137,22 @@ def main():
         specular = args.specular
     unit_sphere = pv.Sphere(radius=1, theta_resolution=12, phi_resolution=12)
 
-    def add_cloud(coords, sizes, brightness=1.0):
-        for mask, rgb in ((coords[:, 2] >= 0, (0.5, 1.00, 0.19)),
-                          (coords[:, 2] < 0, (0.04, 0.65, 1.0))):
+    palettes = {
+        "amber-cyan": ((1.0, 0.741, 0.271), (0.086, 0.851, 0.910)),
+        "sunlight-cyan": ((1.0, 0.94, 0.42), (0.38, 1.0, 1.0)),
+        "magenta-azure": ((1.0, 0.294, 0.545), (0.208, 0.655, 1.0)),
+        "coral-violet": ((1.0, 0.443, 0.239), (0.655, 0.545, 0.980)),
+        "original": ((0.5, 1.00, 0.19), (0.04, 0.65, 1.0)),
+    }
+    positive, negative = palettes[args.palette]
+
+    def add_cloud(coords, sizes, brightness=1.0, invert_phase=False):
+        if invert_phase:
+            positive, negative = palettes[args.palette][::-1]
+        else:
+            positive, negative = palettes[args.palette]
+        for mask, rgb in ((coords[:, 2] >= 0, positive),
+                          (coords[:, 2] < 0, negative)):
             cloud = pv.PolyData(coords[mask])
             cloud["radius"] = sizes[mask]
             spheres = cloud.glyph(scale="radius", geom=unit_sphere,
@@ -133,18 +160,21 @@ def main():
             color = tuple(min(1.0, channel*brightness) for channel in rgb)
             pl.add_mesh(spheres, color=color, smooth_shading=True,
                         pbr=True, metallic=metallic, roughness=roughness,
-                        ambient=0.15, diffuse=0.8,
-                        specular=specular, specular_power=32,
+                        ambient=0.24, diffuse=0.86,
+                        specular=specular, specular_power=90,
                         show_scalar_bar=False)
 
     add_cloud(xyz, radii)
 
     if args.mirror:
-        # Reflection is a geometrically mirrored copy, not optical ray tracing.
+        # Spatial reflection plus optional colour swap to symbolize the phase
+        # reversal of the image dipole parallel to a perfect conducting mirror.
+        # This is a conceptual illustration, not a reflected atomic wavefunction.
         # It sits behind a translucent mirror plane so it remains visible.
         reflected = xyz.copy()
         reflected[:, 0] = 2*args.mirror_x - reflected[:, 0]
-        add_cloud(reflected, radii, args.reflection_brightness)
+        add_cloud(reflected, radii, args.reflection_brightness,
+                  invert_phase=args.image_dipole_phase)
 
         # Mirror in the yz plane. Subtle dark glass rather than a plastic shell.
         mirror = pv.Plane(center=(args.mirror_x, 0, 0),
@@ -170,6 +200,21 @@ def main():
     # pl.camera.zoom(1.1 if args.mirror else 1.2)
     if args.save:
         pl.screenshot(args.output)
+        if args.glow and args.glow_strength > 0:
+            # Screen-blended bloom, applied only to saturated bright pixels.
+            # This is an artistic postprocess; it does not alter the model.
+            from PIL import Image, ImageFilter, ImageChops
+            im = Image.open(args.output).convert("RGB")
+            pix = np.asarray(im, dtype=np.float32)
+            mx, mn = pix.max(axis=2), pix.min(axis=2)
+            saturation = mx - mn
+            mask = np.clip((mx - 65) / 140, 0, 1) * np.clip((saturation - 22) / 90, 0, 1)
+            luminous = np.uint8(np.clip(pix * mask[..., None], 0, 255))
+            halo = Image.fromarray(luminous, "RGB").filter(
+                ImageFilter.GaussianBlur(args.glow_radius))
+            halo = halo.point(lambda v: int(v * args.glow_strength))
+            im = ImageChops.screen(im, halo)
+            im.save(args.output)
         print(f"Saved {args.output}")
         pl.close()
     else:
