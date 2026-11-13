@@ -1,6 +1,3 @@
-
-import os
-os.chdir(os.path.dirname(os.path.abspath(__file__)))
 """Atomic Radiation — Post 4, Figure 1.
 
 Inertial and uniformly accelerated worldlines in the (z, ct) plane.
@@ -32,7 +29,8 @@ plt.rcParams.update({
     'font.size': 11,
     'axes.spines.top': False,
     'axes.spines.right': False,
-    'savefig.facecolor': 'white',})
+    'savefig.facecolor': 'white',
+})
 fig, ax = plt.subplots(figsize=(8.1, 7.3), dpi=160)
 fig.patch.set_facecolor('white')
 ax.set_facecolor('white')
