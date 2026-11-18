@@ -24,9 +24,8 @@ Suggested excerpt: An atom in its ground state is stable because vacuum fluctuat
 Notes: Upload figures separately to Medium; relative Markdown image paths are placeholders for locally stored originals. Figure 3 source PNG was NOT among supplied uploads and should be located before publication. Equations use LaTeX in this canonical Markdown file; prepare image or Unicode equivalents if Medium does not render them.
 -->
 
-# What Happens When You Accelerate an Atom?
-
-## A delicate balance keeps atomic ground states stable. What happens when the atom accelerates?
+# How Can an Atom Get Excited When There Are No Photons?
+## An atom in its ground state cannot absorb light from empty space. But accelerate it, and it can gain energy. How can motion alone make that possible?
 
 ![Conceptual three-dimensional spacetime illustration showing an atom along a curved turquoise accelerated worldline and translucent light cones.](atomic_post4_feature.png)
 
@@ -34,15 +33,15 @@ Notes: Upload figures separately to Medium; relative Markdown image paths are pl
 
 ## The Cancellation That Keeps an Atom Stable
 
-Excited atoms emit light, and the properties of that light tell us a great deal about the atom. The process is called spontaneous emission. An excited atom can lose energy and emit a photon even when there is no external radiation to trigger the transition. But an atom in its ground state does not spontaneously absorb energy from the vacuum.
+Excited atoms emit light, and the properties of that light tell us a great deal about the atom. The process is called spontaneous emission. An excited atom can lose energy and emit a photon even when there is no external radiation to trigger the transition. But an atom in its ground state does not spontaneously absorb energy from the vacuum. We know spontaneous emission, but not spontaneous absorption.
 
 In the previous post, we found that spontaneous emission involves two contributions: vacuum fluctuations and radiation reaction. Vacuum fluctuations originate from the quantum field, which fluctuates even in its lowest energy state. Radiation reaction is the effect of the field produced by the atom acting back on the atom itself.
 
-For an excited atom, both contributions reduce its energy, leading to spontaneous emission. For an atom in its ground state, they act in opposite directions and cancel exactly. This separation uses the symmetric operator ordering introduced by Dalibard, Dupont-Roc and Cohen-Tannoudji [2,3]. With this choice, the two effects can be identified separately.
+For an excited atom, both contributions reduce its energy, leading to spontaneous emission. For an atom in its ground state, they act in opposite directions and cancel exactly. In quantum mechanics, the distinction between vacuum fluctuations and radiation reaction is not automatic. Both contribute to the same physical process. Dalibard, Dupont-Roc and Cohen-Tannoudji showed how to separate their contributions consistently [2,3], as we discussed in the previous post.
 
-The cancellation also holds for an atom moving at constant velocity. After all, the laws of physics should be the same in every inertial reference frame.
+The cancellation that makes the ground state stable holds for an atom moving at constant velocity. 
 
-But what if the atom accelerates?
+> **But what if the atom accelerates?**
 
 The atom's internal energy levels have not changed, and the quantum field is still in the same vacuum state. Only the motion is different. We might therefore expect the cancellation to survive.
 
@@ -60,26 +59,32 @@ Suppose the atom carries an accelerometer. We arrange for this accelerometer to 
 
 An observer in the laboratory sees the atom move faster and faster, approaching the speed of light. The laboratory acceleration gradually decreases, even though the proper acceleration remains constant.
 
-We use the laboratory time *t* and position *z* to describe the motion, while τ denotes the proper time measured by the atom itself. The trajectory is
+We describe the motion from the laboratory, using time *t* and position *z* along the direction of acceleration. The atom also carries its own clock, which measures its proper time τ.
 
-$$
-\begin{aligned}
-ct(\tau) &= \frac{c^2}{a}\sinh\left(\frac{a\tau}{c}\right),\\[4pt]
-z(\tau) &= \frac{c^2}{a}\cosh\left(\frac{a\tau}{c}\right).
-\end{aligned}
-$$
+In relativity, it is convenient to multiply time by the speed of light *c*. This gives *ct*, which has the same unit as position *z*: both are distances. We can then plot the atom’s motion in a spacetime diagram, with *z* on the horizontal axis and *ct* on the vertical axis.
 
-Combining the two equations gives
+For constant proper acceleration *a*, the position and laboratory time of the atom are related to its own clock by
 
-$$
-z^2-(ct)^2=\left(\frac{c^2}{a}\right)^2.
+$$  
+\begin{aligned}  
+ct(\tau) &= \frac{c^2}{a}\sinh\left(\frac{a\tau}{c}\right),\\[4pt]  
+z(\tau) &= \frac{c^2}{a}\cosh\left(\frac{a\tau}{c}\right).  
+\end{aligned}  
 $$
 
-This is the equation of a hyperbola. Figure 1 compares the worldline of an inertial atom with that of our uniformly accelerated atom.
+Here, t(τ) and z(τ) mean the laboratory time and position of the atom when its own clock reads τ.
+
+The two equations can be combined to eliminate τ, giving
+
+$$  
+z^2-(ct)^2=\left(\frac{c^2}{a}\right)^2.  
+$$
+
+This is the equation of a hyperbola. Figure 1 shows this curved worldline alongside the straight worldline of an atom moving at constant velocity.
 
 ![Figure 1: A blue straight inertial worldline and red hyperbolic accelerated worldline in a spacetime diagram, with brown dashed null horizons bounding a shaded Rindler wedge.](post4_figure1_spacetime.png)
 
-*Figure 1. An inertial atom follows a straight worldline. For constant proper acceleration, the worldline becomes a hyperbola. The dashed lines are the past and future Rindler horizons of the accelerated trajectory. Image by author.*
+*Figure 1. An inertial atom follows a straight worldline. For constant **proper** acceleration, the worldline becomes a hyperbola. The dashed lines are the past and future Rindler horizons of the accelerated trajectory. Image by author.*
 
 At large positive or negative laboratory times, the hyperbola approaches the diagonal lines *z* = ±*ct*. These are the paths followed by light travelling in opposite directions.
 
@@ -87,13 +92,13 @@ The two lines also define causal boundaries for the accelerating atom. A light s
 
 These boundaries are called **Rindler horizons**. They arise because we have assumed the atom continues accelerating forever. If the acceleration stops after a finite time, the atom no longer has these exact horizons.
 
-Nothing physically special happens at the dashed lines. They are not surfaces that emit radiation. They describe which events can communicate with an observer following the complete accelerated trajectory.
+> **Rindler horizons describe which events can communicate with an observer following the complete accelerated trajectory.**
 
 We now have the atom's worldline. The question is how this changes its interaction with the quantum field.
 
-## Which of Our Four Statistical Functions Changes?
+## What Changes when the Atom Accelerates?
 
-In the previous post, we introduced four statistical functions that describe the interaction between the atom and the field. Two describe the atom, and two describe the field.
+Four statistical functions describe the interaction between the atom and the field. Two describe the atom, and two describe the field.
 
 For each system, we distinguish a correlation function and a susceptibility.
 
@@ -115,7 +120,7 @@ $$
 C^F(x,x'),\qquad \chi^F(x,x').
 $$
 
-The difference in their arguments matters. The atom's internal dynamics are described using its proper time. The field exists throughout spacetime.
+Note the difference in the arguments: the atom's internal dynamics are described using its proper time. The field exists throughout spacetime.
 
 When the atom interacts with the field, the two spacetime positions are fixed by the atom's trajectory:
 
@@ -123,7 +128,7 @@ $$
 x=x(\tau),\qquad x'=x(\tau').
 $$
 
-In the expressions for the atomic energy change, vacuum fluctuations combine the field correlation with the atomic susceptibility. Radiation reaction combines the field susceptibility with the atomic correlation.
+In the expressions for the atomic energy evolution, vacuum fluctuations combine the field correlation with the atomic susceptibility. Radiation reaction combines the field susceptibility with the atomic correlation.
 
 Schematically,
 
@@ -146,9 +151,9 @@ For a massless scalar field in four-dimensional flat spacetime, the field's resp
 
 There is still a local contribution where the two points coincide. This requires some care because the field response is singular there. Audretsch and Müller evaluated the corresponding radiation-reaction term and found that it remains unchanged under uniform acceleration [1].
 
-That leaves the field correlation function.
+> **So, out of the four contributions three do not change when the atom accelerates. That leaves the field correlation function.**
 
-The vacuum state itself is unchanged, but the atom now samples its correlations along a hyperbolic trajectory rather than a straight one. We can calculate what difference this makes.
+The vacuum state itself is unchanged, but the atom now samples its correlations along a hyperbolic trajectory rather than a straight one. This affects the field correlations, as seen by the atom.
 
 ## Acceleration Changes the Vacuum Fluctuations Sampled by the Atom
 
